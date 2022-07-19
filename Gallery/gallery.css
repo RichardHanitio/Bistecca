@@ -1,0 +1,108 @@
+@import "../global_styles.css";
+@import "../Navbar/navbar.css";
+
+/* main */
+body {
+    margin: 0px;
+    text-align: center;
+    color: white;
+    background-color: #2b3a41;
+}
+
+.gallery > p {
+    padding: 50px;
+    font-size: var(--heading-font-1);
+    font-weight: 700;
+}
+
+.centered {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+}
+
+.centered h2 {
+    margin-top: 0px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 20px;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+}
+
+.image {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: 0.5s ease;
+    backface-visibility: hidden;
+}
+
+.middle {
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.container:hover .image {
+    opacity: 0.3;
+}
+
+.container:hover .middle {
+    opacity: 1;
+}
+
+.text {
+    color: white;
+    font-size: var(--heading-font-4);
+    padding: 16px 32px;
+}
+
+.submit-button {
+    height: 50px;
+    width: 200px;
+    font-size: 20px;
+    margin-top: 30px;
+    border-radius: 6px;
+}
+
+form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+form ul {
+    display: flex;
+    flex-direction: column;
+}
+
+form ul li {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding-bottom: 10px;
+}
+
+form ul li label {
+    font-size: 17px;
+    color: black;
+}
+
+#wrong {
+    color: red;
+    font-size: 12px;
+}
