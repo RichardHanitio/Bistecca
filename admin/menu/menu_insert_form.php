@@ -11,10 +11,6 @@
     <form action="menu.php" id="form" method="POST" enctype="multipart/form-data">
         <table>
             <tr>
-                <td><label for="">ID_Menu</label></td>
-                <td><input type="text" id="" name="id_menu"></td>
-            </tr>
-            <tr>
                 <td><label for="">Category</label></td>
                 <td><input type="text" id="" name="category"></td>
             </tr>

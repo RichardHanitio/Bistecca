@@ -78,6 +78,27 @@
                     <div class="title">
                         <span>Steak</span>
                     </div>
+
+                    <div class="background-container">
+                        <?php $table = selectCategoryMenu("STEAK") ; while( $row = mysqli_fetch_array($table)) {?>
+                            <div class="card-container">
+                                <div class="picture">
+                                    <img src="../menuImage/<?= $row[5] ?>" alt="tenderloin" />
+                                </div>
+                                <div class="card-container-info">
+                                    <p class="menu-title"><?= $row[2] ?></p>
+                                    <p class="menu-info"><?= $row[3] ?></p>
+                                    <div class="card-container-amount">
+                                        <p><?= $row[4] ?></p>
+                                        <button class="plus-sign">
+                                            <span class="icon">+</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>     
+                        <?php } ?>
+                    </div>
+                    
                 </div>
             </section>
 
@@ -85,6 +106,26 @@
                 <div class="container menu-container">
                     <div class="title">
                         <span>Spaghetti</span>
+                    </div>
+
+                    <div class="background-container">
+                        <?php $table = selectCategoryMenu("SPAGHETTI") ; while( $row = mysqli_fetch_array($table)) {?>
+                            <div class="card-container">
+                                <div class="picture">
+                                    <img src="../menuImage/<?= $row[5] ?>" alt="tenderloin" />
+                                </div>
+                                <div class="card-container-info">
+                                    <p class="menu-title"><?= $row[2] ?></p>
+                                    <p class="menu-info"><?= $row[3] ?></p>
+                                    <div class="card-container-amount">
+                                        <p><?= $row[4] ?></p>
+                                        <button class="plus-sign">
+                                            <span class="icon">+</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>     
+                        <?php } ?>
                     </div>
                 </div>
             </section>
@@ -94,6 +135,26 @@
                     <div class="title">
                         <span>Snack</span>
                     </div>
+
+                    <div class="background-container">
+                        <?php $table = selectCategoryMenu("SNACK") ; while( $row = mysqli_fetch_array($table)) {?>
+                            <div class="card-container">
+                                <div class="picture">
+                                    <img src="../menuImage/<?= $row[5] ?>" alt="tenderloin" />
+                                </div>
+                                <div class="card-container-info">
+                                    <p class="menu-title"><?= $row[2] ?></p>
+                                    <p class="menu-info"><?= $row[3] ?></p>
+                                    <div class="card-container-amount">
+                                        <p><?= $row[4] ?></p>
+                                        <button class="plus-sign">
+                                            <span class="icon">+</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>     
+                        <?php } ?>
+                    </div>
                 </div>
             </section>
 
@@ -102,6 +163,26 @@
                     <div class="title">
                         <span>Tea</span>
                     </div>
+
+                    <div class="background-container">
+                        <?php $table = selectCategoryMenu("TEA") ; while( $row = mysqli_fetch_array($table)) {?>
+                            <div class="card-container">
+                                <div class="picture">
+                                    <img src="../menuImage/<?= $row[5] ?>" alt="tenderloin" />
+                                </div>
+                                <div class="card-container-info">
+                                    <p class="menu-title"><?= $row[2] ?></p>
+                                    <p class="menu-info"><?= $row[3] ?></p>
+                                    <div class="card-container-amount">
+                                        <p><?= $row[4] ?></p>
+                                        <button class="plus-sign">
+                                            <span class="icon">+</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>     
+                        <?php } ?>
+                    </div>
                 </div>
             </section>
 
@@ -109,6 +190,26 @@
                 <div class="container menu-container">
                     <div class="title">
                         <span>Coffee</span>
+                    </div>
+
+                    <div class="background-container">
+                        <?php $table = selectCategoryMenu("COFFEE") ; while( $row = mysqli_fetch_array($table)) {?>
+                            <div class="card-container">
+                                <div class="picture">
+                                    <img src="../menuImage/<?= $row[5] ?>" alt="tenderloin" />
+                                </div>
+                                <div class="card-container-info">
+                                    <p class="menu-title"><?= $row[2] ?></p>
+                                    <p class="menu-info"><?= $row[3] ?></p>
+                                    <div class="card-container-amount">
+                                        <p><?= $row[4] ?></p>
+                                        <button class="plus-sign">
+                                            <span class="icon">+</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>     
+                        <?php } ?>
                     </div>
                 </div>
             </section>

@@ -8,8 +8,7 @@
         $tipeFile = $imageFile['type'];
         $directoryTujuan = "../../menuImage/".$imageFile['name'];
         move_uploaded_file($imageFile['tmp_name'], $directoryTujuan);
-
-        $id_menu =  $_POST['id_menu'];
+        $id_menu =  generateNextId("menu" ,"id_menu");
         $category = $_POST['category'];
         $name = $_POST['name'];
         $description = $_POST['description'];

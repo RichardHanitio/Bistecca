@@ -4,7 +4,7 @@
 
     if(isset($_POST['tambahreservation'])){
         global $conn;
-        $id_reservation =  $_POST['id_reservation'];
+        $id_reservation =  generateNextId("reservation","id_reservation");
         $date = $_POST['date'];
         $time = $_POST['time'];
         $location = $_POST['location'];
