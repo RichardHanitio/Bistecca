@@ -25,7 +25,7 @@
                 <div class="navbar-links">
                     <ul>
                         <li><a href="/index.php">Home</a></li>
-                        <li><a href="#">Gallery</a></li>
+                        <li><a href="/Gallery/gallery.php">Gallery</a></li>
                         <li><a href="/Locations/location.php">Locations</a></li>
                         <li><a href="/About/about.php">About</a></li>
                     </ul>
