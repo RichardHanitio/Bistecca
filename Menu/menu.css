@@ -66,6 +66,14 @@ body {
 .icon {
     font-size: 36px;
     font-weight: bold;
+    width: 36px;
+    height: 36px;
+    background-color: var(--accent-color-1);
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
 .test {
@@ -84,4 +92,25 @@ img{
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+}
+
+input[type="checkbox"]{
+    display:none;
+}
+
+.cartLogo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--accent-color-1);
+    border-radius: 100px;
+}
+
+.cartLogo:hover{
+    cursor: pointer;
 }
