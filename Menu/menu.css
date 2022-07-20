@@ -12,15 +12,22 @@ body {
     margin : 50px 0;
 }
 
-
 .card-container {
     background-color: var(--accent-color-3);
     width: 416px;
     height: 190px;
     border-radius: 12px;
-    display: flex;
     margin: 16px 0;
+    display : flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.card-inner-container {
+    max-width : 90%;
+    max-height : 90%;
+    display: flex;
+} 
 .card-container-info {
     display: flex;
     flex-direction: column;
@@ -28,17 +35,24 @@ body {
     width: 70%;
 }
 .menu-title {
-    font-size: 24px;
+    font-size: var(--heading-font-3);
     font-weight: bold;
     font-family: "Mulish", sans-serif;
 }
 .menu-info {
-    font-size: 16px;
+    font-size: var(--body-font);
     font-family: "Mulish", sans-serif;
+    font-weight : 300;
 }
+
+.menu-price {
+    font-size : var(--heading-font-4);
+    font-weight : 500; 
+}
+
 .card-container-amount {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 .picture {
     margin: 18px 17px;
@@ -76,6 +90,14 @@ body {
     cursor: pointer;
 }
 
+.icon:hover {
+    background-color : #8c6e51;
+}
+
+.icon:active {
+    background-color : #705840;
+}
+
 .test {
     display: flex;
     align-items: center;
@@ -102,8 +124,8 @@ input[type="checkbox"]{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     position: fixed;
     bottom: 30px;
     right: 30px;
@@ -111,6 +133,26 @@ input[type="checkbox"]{
     border-radius: 100px;
 }
 
+.cartLogo:hover {
+    background-color : #8c6e51;
+}
+
 .cartLogo:hover{
     cursor: pointer;
+}
+
+.notif {
+    background-color : red;
+    width : 40px;
+    height : 40px;
+    border-radius : 50%;
+    position : absolute;
+    top : -15px;
+    right : 0;
+    display : flex;
+    align-items : center;
+    justify-content : center;
+    color : white;
+    font-size : var(--body-font);
+    font-weight : 700;
 }

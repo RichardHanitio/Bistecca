@@ -1,3 +1,5 @@
+<?php require_once("../lib.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -16,80 +18,33 @@
     </head>
     <body>
         <?php require "../Navbar/navbar.php" ?>
-        <main>
-            <form action="cart.php" method="post">
+        <main> 
+            <form action="menu-selected.php" method="post">
                 <section>
                     <div class="container menu-container">
                         <div class="title menu-main-title">
-                            <label>Special Offer</label>
-                        </div>
-                        <div class="image-container">
-                            <div class="card-container">
-                                <div class="picture">
-                                    <img src="../images/tenderloin.png" alt="tenderloin" />
-                                </div>
-                                <div class="card-container-info">
-                                    <p class="menu-title">Tenderloin Stick</p>
-                                    <p class="menu-info">Steak with Lorem Ipsum</p>
-                                    <div class="card-container-amount">
-                                        <p>Rp.500.000,00</p>
-                                        
-                                            <label class="icon">+</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-container">
-                                <div class="picture">
-                                    <img src="../images/tenderloin.png" alt="tenderloin" />
-                                </div>
-                                <div class="card-container-info">
-                                    <p class="menu-title">Tenderloin Stick</p>
-                                    <p class="menu-info">Steak with Lorem Ipsum</p>
-                                    <div class="card-container-amount">
-                                        <p>Rp.500.000,00</p>
-                                        
-                                            <label class="icon">+</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-container">
-                                <div class="picture">
-                                    <img src="../images/tenderloin.png" alt="tenderloin" />
-                                </div>
-                                <div class="card-container-info">
-                                    <p class="menu-title">Tenderloin Stick</p>
-                                    <p class="menu-info">Steak with Lorem Ipsum</p>
-                                    <div class="card-container-amount">
-                                        <p>Rp.600.000,00</p>
-                                        
-                                            <label class="icon">+</label>
-                                    </div>
-                                </div>
-                            </div>     
-                            
-                        </div>
-                    </div>
-                </section>
-
-                <section>
-                    <div class="container menu-container">
-                        <div class="title">
                             <label>Steak</label>
                         </div>
 
                         <div class="background-container">
-                            <?php $table = selectCategoryMenu("STEAK") ; while( $row = mysqli_fetch_array($table)) {?>
+                            <?php 
+                                $table = selectCategoryMenu("STEAK"); 
+                                while( $row = mysqli_fetch_array($table)) {?>
                                 <div class="card-container">
-                                    <div class="picture">
-                                        <img src="../menuImage/<?= $row[5] ?>" alt="tenderloin" />
-                                    </div>
-                                    <div class="card-container-info">
-                                        <p class="menu-title"><?= $row[2] ?></p>
-                                        <p class="menu-info"><?= $row[3] ?></p>
-                                        <div class="card-container-amount">
-                                            <p><?= $row[4] ?></p>
-                                            <label class="icon" for="<?= $row[0] ?>">+</label>
-                                            <input type="checkbox" name="id_menu[]" id="<?= $row[0] ?>" value="<?= $row[0] ?>">
+                                    <div class="card-inner-container">
+                                        <div class="picture">
+                                            <img src="../menuImage/<?= $row[5] ?>"/>
+                                        </div>
+                                        <div class="card-container-info">
+                                            <p class="menu-title"><?= $row[2] ?></p>
+                                            <p class="menu-info desc" ><?= chop_string($row[3]) ?></p>
+                                            <div class="card-container-amount">
+                                                <p class="menu-price">Rp<?= $row[4] ?></p>
+                                                <?php if(is_logged_in()) { ?>
+                                                    <label class="icon" for="<?= $row[0] ?>">+</label>;
+                                                    <input type="checkbox" name="id_menu[]" id="<?= $row[0] ?>" value="<?= $row[0] ?>" onchange="updateCount(this)">;
+                                                <?php }?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>     
@@ -101,23 +56,27 @@
 
                 <section>
                     <div class="container menu-container">
-                        <div class="title">
+                        <div class="title menu-main-title">
                             <label>Spaghetti</label>
                         </div>
 
                         <div class="background-container">
                             <?php $table = selectCategoryMenu("SPAGHETTI") ; while( $row = mysqli_fetch_array($table)) {?>
                                 <div class="card-container">
-                                    <div class="picture">
-                                        <img src="../menuImage/<?= $row[5] ?>" alt="tenderloin" />
-                                    </div>
-                                    <div class="card-container-info">
-                                        <p class="menu-title"><?= $row[2] ?></p>
-                                        <p class="menu-info"><?= $row[3] ?></p>
-                                        <div class="card-container-amount">
-                                            <p><?= $row[4] ?></p>                                         
-                                                <label class="icon" for="<?= $row[0] ?>">+</label>
-                                                <input type="checkbox" name="id_menu[]" id="<?= $row[0] ?>" value="<?= $row[0] ?>">
+                                    <div class="card-inner-container">
+                                        <div class="picture">
+                                            <img src="../menuImage/<?= $row[5] ?>"/>
+                                        </div>
+                                        <div class="card-container-info">
+                                            <p class="menu-title"><?= $row[2] ?></p>
+                                            <p class="menu-info desc" ><?= chop_string($row[3]) ?></p>
+                                            <div class="card-container-amount">
+                                                <p class="menu-price">Rp<?= $row[4] ?></p>
+                                                <?php if(is_logged_in()) { ?>
+                                                    <label class="icon" for="<?= $row[0] ?>">+</label>;
+                                                    <input type="checkbox" name="id_menu[]" id="<?= $row[0] ?>" value="<?= $row[0] ?>" onchange="updateCount(this)">;
+                                                <?php }?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>     
@@ -128,23 +87,27 @@
 
                 <section>
                     <div class="container menu-container">
-                        <div class="title">
+                        <div class="title menu-main-title">
                             <label>Snack</label>
                         </div>
 
                         <div class="background-container">
                             <?php $table = selectCategoryMenu("SNACK") ; while( $row = mysqli_fetch_array($table)) {?>
                                 <div class="card-container">
-                                    <div class="picture">
-                                        <img src="../menuImage/<?= $row[5] ?>" alt="tenderloin" />
-                                    </div>
-                                    <div class="card-container-info">
-                                        <p class="menu-title"><?= $row[2] ?></p>
-                                        <p class="menu-info"><?= $row[3] ?></p>
-                                        <div class="card-container-amount">
-                                            <p><?= $row[4] ?></p>
-                                            <label class="icon" for="<?= $row[0] ?>">+</label>
-                                            <input type="checkbox" name="id_menu[]" id="<?= $row[0] ?>" value="<?= $row[0] ?>">
+                                    <div class="card-inner-container">
+                                        <div class="picture">
+                                            <img src="../menuImage/<?= $row[5] ?>"/>
+                                        </div>
+                                        <div class="card-container-info">
+                                            <p class="menu-title"><?= $row[2] ?></p>
+                                            <p class="menu-info desc" ><?= chop_string($row[3]) ?></p>
+                                            <div class="card-container-amount">
+                                                <p class="menu-price">Rp<?= $row[4] ?></p>
+                                                <?php if(is_logged_in()) { ?>
+                                                    <label class="icon" for="<?= $row[0] ?>">+</label>;
+                                                    <input type="checkbox" name="id_menu[]" id="<?= $row[0] ?>" value="<?= $row[0] ?>" onchange="updateCount(this)">;
+                                                <?php }?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>     
@@ -155,50 +118,27 @@
 
                 <section>
                     <div class="container menu-container">
-                        <div class="title">
-                            <label>Tea</label>
+                        <div class="title menu-main-title">
+                            <label>Drinks</label>
                         </div>
 
                         <div class="background-container">
-                            <?php $table = selectCategoryMenu("TEA") ; while( $row = mysqli_fetch_array($table)) {?>
+                            <?php $table = selectCategoryMenu("DRINKS") ; while( $row = mysqli_fetch_array($table)) {?>
                                 <div class="card-container">
-                                    <div class="picture">
-                                        <img src="../menuImage/<?= $row[5] ?>" alt="tenderloin" />
-                                    </div>
-                                    <div class="card-container-info">
-                                        <p class="menu-title"><?= $row[2] ?></p>
-                                        <p class="menu-info"><?= $row[3] ?></p>
-                                        <div class="card-container-amount">
-                                            <p><?= $row[4] ?></p>
-                                            <label class="icon" for="<?= $row[0] ?>">+</label>
-                                            <input type="checkbox" name="id_menu[]" id="<?= $row[0] ?>" value="<?= $row[0] ?>">
+                                    <div class="card-inner-container">
+                                        <div class="picture">
+                                            <img src="../menuImage/<?= $row[5] ?>"/>
                                         </div>
-                                    </div>
-                                </div>     
-                            <?php } ?>
-                        </div>
-                    </div>
-                </section>
-
-                <section>
-                    <div class="container menu-container">
-                        <div class="title">
-                            <label>Coffee</label>
-                        </div>
-
-                        <div class="background-container">
-                            <?php $table = selectCategoryMenu("COFFEE") ; while( $row = mysqli_fetch_array($table)) {?>
-                                <div class="card-container">
-                                    <div class="picture">
-                                        <img src="../menuImage/<?= $row[5] ?>" alt="tenderloin" />
-                                    </div>
-                                    <div class="card-container-info">
-                                        <p class="menu-title"><?= $row[2] ?></p>
-                                        <p class="menu-info"><?= $row[3] ?></p>
-                                        <div class="card-container-amount">
-                                            <p><?= $row[4] ?></p>
-                                            <label class="icon" for="<?= $row[0] ?>">+</label>
-                                            <input type="checkbox" name="id_menu[]" id="<?= $row[0] ?>" value="<?= $row[0] ?>">
+                                        <div class="card-container-info">
+                                            <p class="menu-title"><?= $row[2] ?></p>
+                                            <p class="menu-info desc" ><?= chop_string($row[3]) ?></p>
+                                            <div class="card-container-amount">
+                                                <p class="menu-price">Rp<?= $row[4] ?></p>
+                                                <?php if(is_logged_in()) { ?>
+                                                    <label class="icon" for="<?= $row[0] ?>">+</label>;
+                                                    <input type="checkbox" name="id_menu[]" id="<?= $row[0] ?>" value="<?= $row[0] ?>" onchange="updateCount(this)">;
+                                                <?php }?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>     
@@ -207,14 +147,24 @@
                     </div>
                 </section>
                 
-                <button type="submit" class="cartLogo">TAS</button>
-
-            </form>
-            
+                <?php 
+                    if(is_logged_in()) {
+                        echo '
+                            <button type="submit" class="cartLogo">
+                                <svg width="40" height="40" fill="#ffffff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.25 21a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
+                                    <path d="M18.75 21a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
+                                    <path d="M7.865 14.25h12.25l1.8-9H6.276L5.88 3H1.5v1.5h3.12l2.25 12.75h13.38v-1.5H8.13l-.265-1.5Z"></path>
+                                </svg>
+                                <div class="notif">0<div>
+                            </button>
+                        ';
+                    }
+                ?>
+            </form>            
         </main>
     </body>
 
-    <script>
-
-    </script>
 </html>
+
+<script src="menu.js"></script>

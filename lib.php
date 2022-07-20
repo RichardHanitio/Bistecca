@@ -11,6 +11,10 @@
         }
     }
 
+    function chop_string($str) {
+        return substr($str, 0, 50)."...";
+    }
+
     function generateNextId($table, $column) {
         global $conn;
         $qry = mysqli_query($conn, "SELECT * FROM $table ORDER BY $column DESC LIMIT 1");
