@@ -47,14 +47,14 @@
             $query2 = mysqli_query($conn, "SELECT menu.name, menu.price FROM orders JOIN menu ON orders.id_menu = menu.id_menu WHERE id_order='".$row["id_order"]."'");
             $row2 = mysqli_fetch_assoc($query2);
             $output .= '
-                <tr><td>'.$row2["name"].'</td><td>'.$row2["price"].'</td></tr>
+                <tr><td>'.$row2["name"].'</td><td>Rp'.$row2["price"].'</td></tr>
             ';
             $total+=(int)$row2["price"];
         }
 
         $output .= '
             <br>
-            <tr><td><strong><h3>Total</h3></strong></td><td><strong><h3>'.$total.'</h3></strong></td></tr>
+            <tr><td><strong><h3>Total</h3></strong></td><td><strong><h3>Rp'.$total.'</h3></strong></td></tr>
         ';
 
         return $output;
