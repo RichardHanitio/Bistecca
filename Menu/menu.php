@@ -19,7 +19,7 @@
     <body>
         <?php require "../Navbar/navbar.php" ?>
         <main> 
-            <form action="menu-selected.php" method="post">
+            <form action="../Reservation/reservation.php" method="post">
                 <section>
                     <div class="container menu-container">
                         <div class="title menu-main-title">
@@ -41,8 +41,8 @@
                                             <div class="card-container-amount">
                                                 <p class="menu-price">Rp<?= $row[4] ?></p>
                                                 <?php if(is_logged_in()) { ?>
-                                                    <label class="icon" for="<?= $row[0] ?>">+</label>;
-                                                    <input type="checkbox" name="id_menu[]" id="<?= $row[0] ?>" value="<?= $row[0] ?>" onchange="updateCount(this)">;
+                                                    <label class="icon" for="<?= $row[0] ?>">+</label>
+                                                    <input type="checkbox" name="id_menu[]" id="<?= $row[0] ?>" value="<?= $row[0] ?>" onchange="updateCount(this)">
                                                 <?php }?>
                                             </div>
                                         </div>
@@ -73,8 +73,8 @@
                                             <div class="card-container-amount">
                                                 <p class="menu-price">Rp<?= $row[4] ?></p>
                                                 <?php if(is_logged_in()) { ?>
-                                                    <label class="icon" for="<?= $row[0] ?>">+</label>;
-                                                    <input type="checkbox" name="id_menu[]" id="<?= $row[0] ?>" value="<?= $row[0] ?>" onchange="updateCount(this)">;
+                                                    <label class="icon" for="<?= $row[0] ?>">+</label>
+                                                    <input type="checkbox" name="id_menu[]" id="<?= $row[0] ?>" value="<?= $row[0] ?>" onchange="updateCount(this)">
                                                 <?php }?>
                                             </div>
                                         </div>
@@ -104,8 +104,8 @@
                                             <div class="card-container-amount">
                                                 <p class="menu-price">Rp<?= $row[4] ?></p>
                                                 <?php if(is_logged_in()) { ?>
-                                                    <label class="icon" for="<?= $row[0] ?>">+</label>;
-                                                    <input type="checkbox" name="id_menu[]" id="<?= $row[0] ?>" value="<?= $row[0] ?>" onchange="updateCount(this)">;
+                                                    <label class="icon" for="<?= $row[0] ?>">+</label>
+                                                    <input type="checkbox" name="id_menu[]" id="<?= $row[0] ?>" value="<?= $row[0] ?>" onchange="updateCount(this)">
                                                 <?php }?>
                                             </div>
                                         </div>
@@ -135,8 +135,8 @@
                                             <div class="card-container-amount">
                                                 <p class="menu-price">Rp<?= $row[4] ?></p>
                                                 <?php if(is_logged_in()) { ?>
-                                                    <label class="icon" for="<?= $row[0] ?>">+</label>;
-                                                    <input type="checkbox" name="id_menu[]" id="<?= $row[0] ?>" value="<?= $row[0] ?>" onchange="updateCount(this)">;
+                                                    <label class="icon" for="<?= $row[0] ?>">+</label>
+                                                    <input type="checkbox" name="id_menu[]" id="<?= $row[0] ?>" value="<?= $row[0] ?>" onchange="updateCount(this)">
                                                 <?php }?>
                                             </div>
                                         </div>

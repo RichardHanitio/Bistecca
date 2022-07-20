@@ -34,6 +34,17 @@
         return $newId;
     }
 
+    function generateNextMainId() {
+        global $conn;
+        $qry = mysqli_query($conn, "SELECT * FROM main ORDER BY id_main DESC LIMIT 1");
+        $res = mysqli_fetch_assoc($qry);
+        if(!empty($res)) {
+            $lastId = (int)$res["id_main"];
+            $newId = $lastId + 1;
+        }
+        return $newId;
+    }
+
     function selectTableUser($table, $keyword=null){
         global $conn;
         $key = "$keyword" . "%";
