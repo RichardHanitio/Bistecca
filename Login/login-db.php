@@ -21,6 +21,7 @@
         else if(!empty($res) && $res['is_admin'] == 1){
             $_SESSION["name"] = $res["name"];
             $_SESSION["email"] = $res["email"];
+            $_SESSION["isAdmin"] = true;
             header("Location: ../admin/adminPanel.php");
         }
         else {
