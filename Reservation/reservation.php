@@ -60,17 +60,18 @@
                                     <p class="amount-nominal">Rp<?= $menu["price"]?></p>
                                 </div>
                             </div>
+                            <hr/>
+                            <div class="container-subtotal" >
+                                <p class="total">Total</p>
+                                <div class="subtotal">Rp<?=$total?></div>
+                            </div>
                         <?php
                         }
                     }
                     $_SESSION["orders"] = $arr_orders;
                 }
             ?>
-            <hr/>
-            <div class="container-subtotal" >
-                <p class="total">Total</p>
-                <div class="subtotal">Rp<?=$total?></div>
-            </div>
+            
         </section>
 
         <section class="reservation">
