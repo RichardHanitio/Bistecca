@@ -17,60 +17,62 @@
 <body>
     <?php require "../Navbar/navbar.php" ?>
     <form action="reservation-db.php" method="POST">
-        <section class="cart-container box">
-            <h1 class="cart-title">Cart</h1>
-            <?php
-                if(isset($_POST["id_menu"])) {
-                    $id_menu = $_POST['id_menu'];
-                    $total = 0;
-                    $arr_orders = array();
-                    foreach($id_menu as $id){
-                        // masukkan ke db orders
-                        $id_order = generateNextId("orders", "id_order");
+        <?php
+            if(isset($_POST["id_menu"])) {
+                echo '
+                    <section class="cart-container box">
+                        <h1 class="cart-title">Cart</h1>
+                ';
+                $id_menu = $_POST['id_menu'];
+                $total = 0;
+                $arr_orders = array();
+                foreach($id_menu as $id){
+                    // masukkan ke db orders
+                    $id_order = generateNextId("orders", "id_order");
 
-                        array_push($arr_orders, $id_order);
-                        
-                        $getprice = mysqli_query($conn, "SELECT price FROM menu WHERE id_menu = '$id'");
-                        $pricerow = mysqli_fetch_assoc($getprice);
-                        $price = (int)$pricerow["price"];
-                        $amount = 1;
+                    array_push($arr_orders, $id_order);
+                    
+                    $getprice = mysqli_query($conn, "SELECT price FROM menu WHERE id_menu = '$id'");
+                    $pricerow = mysqli_fetch_assoc($getprice);
+                    $price = (int)$pricerow["price"];
+                    $amount = 1;
 
-                        echo $id_order;
-                        
-                        $stmt = $conn->prepare("INSERT INTO orders VALUES(?,?,?,?)");
-                        $stmt->bind_param("ssii", $id_order, $id, $amount, $price);
-                        $stmt->execute();
+                    echo $id_order;
+                    
+                    $stmt = $conn->prepare("INSERT INTO orders VALUES(?,?,?,?)");
+                    $stmt->bind_param("ssii", $id_order, $id, $amount, $price);
+                    $stmt->execute();
 
-                        // tampilkan menu ke layar & hitung total
-                        $getmenu = mysqli_query($conn, "SELECT * FROM menu WHERE id_menu = '$id'");
-                        while($menu = mysqli_fetch_assoc($getmenu)) { 
-                                $total+=(int)$menu["price"];
-                            ?>
-                            <div class="cart-container inside-cart-container" >
-                                <div class="quantity">
-                                    <button type="button" class="btn-quantity btn-quantity-minus" onclick="handleMinusQuantity(this)">-</button>
-                                    <span>1</span>
-                                    <button type="button" class="btn-quantity btn-quantity-plus" onclick="handlePlusQuantity(this)">+</button>
-                                </div>
-                                <div class="image-container">
-                                    <img src="../menuImage/<?= $menu["image"] ?>">
-                                    <p class="menu-name"><?= $menu["name"] ?></p>
-                                </div>
-                                <div class="amount">
-                                    <p class="amount-nominal">Rp<?= $menu["price"]?></p>
-                                </div>
+                    // tampilkan menu ke layar & hitung total
+                    $getmenu = mysqli_query($conn, "SELECT * FROM menu WHERE id_menu = '$id'");
+                    while($menu = mysqli_fetch_assoc($getmenu)) { 
+                            $total+=(int)$menu["price"];
+                        ?>
+                        <div class="cart-container inside-cart-container" >
+                            <div class="quantity">
+                                <button type="button" class="btn-quantity btn-quantity-minus" onclick="handleMinusQuantity(this)">-</button>
+                                <span>1</span>
+                                <button type="button" class="btn-quantity btn-quantity-plus" onclick="handlePlusQuantity(this)">+</button>
                             </div>
-                            <hr/>
-                            <div class="container-subtotal" >
-                                <p class="total">Total</p>
-                                <div class="subtotal">Rp<?=$total?></div>
+                            <div class="image-container">
+                                <img src="../menuImage/<?= $menu["image"] ?>">
+                                <p class="menu-name"><?= $menu["name"] ?></p>
                             </div>
-                        <?php
-                        }
+                            <div class="amount">
+                                <p class="amount-nominal">Rp<?= $menu["price"]?></p>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="container-subtotal" >
+                            <p class="total">Total</p>
+                            <div class="subtotal">Rp<?=$total?></div>
+                        </div>
+                    <?php
                     }
-                    $_SESSION["orders"] = $arr_orders;
                 }
-            ?>
+                $_SESSION["orders"] = $arr_orders;
+            }
+        ?>
             
         </section>
 
