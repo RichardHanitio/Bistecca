@@ -11,6 +11,10 @@
         }
     }
 
+    function chop_string($str) {
+        return substr($str, 0, 50)."...";
+    }
+
     function generateNextId($table, $column) {
         global $conn;
         $qry = mysqli_query($conn, "SELECT * FROM $table ORDER BY $column DESC LIMIT 1");
@@ -83,5 +87,10 @@
         else{
             return mysqli_query($conn, "SELECT * FROM $table WHERE id_main LIKE '$key' OR email LIKE '$key' OR id_reservation LIKE '$key'");
         }
+    }
+
+    function selectCategoryMenu($category){
+        global $conn;
+        return mysqli_query($conn, "SELECT * FROM menu WHERE category = '$category'");
     }
 ?>

@@ -3,9 +3,12 @@
     require_once("../db.php");
     require_once("../public/TCPDF-main/tcpdf.php");
     
+    
+    $id = $_GET["reservationid"];
+    $email = $_SESSION["email"];
+
     function fetchReservationById() {
-        global $conn;
-        $id = $_GET["reservationid"];
+        global $conn, $id;
         $query = mysqli_query($conn, "SELECT * FROM reservation WHERE id_reservation='".$id."'");
         $row = mysqli_fetch_assoc($query);
 
@@ -21,8 +24,7 @@
     }
 
     function fetchUserByEmail() {
-        global $conn;
-        $email = $_SESSION["email"];
+        global $conn, $email;
         $query = mysqli_query($conn, "SELECT * FROM user WHERE email='".$email."'");
         $row = mysqli_fetch_assoc($query);
 
@@ -30,6 +32,29 @@
             <tr><td>Email</td><td width="20">:</td><td>'.$row["email"].'</td></tr>
             <tr><td>Name</td><td>:</td><td>'.$row["name"].'</td></tr>
             <tr><td>Phone Number</td><td>:</td><td>'.$row["phone_num"].'</td></tr>
+        ';
+
+        return $output;
+    }
+
+    function fetchOrdersByReservation() {
+        global $conn, $id;
+        $query = mysqli_query($conn, "SELECT id_order FROM main WHERE id_reservation='".$id."'");
+        // $rows = mysqli_fetch_assoc($query);
+        $output='';
+        $total = 0;
+        while($row = mysqli_fetch_assoc($query)) {
+            $query2 = mysqli_query($conn, "SELECT menu.name, menu.price FROM orders JOIN menu ON orders.id_menu = menu.id_menu WHERE id_order='".$row["id_order"]."'");
+            $row2 = mysqli_fetch_assoc($query2);
+            $output .= '
+                <tr><td>'.$row2["name"].'</td><td>'.$row2["price"].'</td></tr>
+            ';
+            $total+=(int)$row2["price"];
+        }
+
+        $output .= '
+            <br>
+            <tr><td><strong><h3>Total</h3></strong></td><td><strong><h3>'.$total.'</h3></strong></td></tr>
         ';
 
         return $output;
@@ -72,7 +97,7 @@
     
     $html .= "<h2>------------------------------------ Menu Ordered ------------------------------------</h2>";
     $html .= '<table>';
-    $html .= fetchReservationById();
+    $html .= fetchOrdersByReservation();
     $html .= "</table>";
     $html .= "<h2>------------------------------------ Check Closed ------------------------------------</h2>";
     

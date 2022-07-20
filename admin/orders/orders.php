@@ -4,7 +4,7 @@
 
     if(isset($_POST['tambahorders'])){
         global $conn;
-        $id_order =  $_POST['id_order'];
+        $id_order =  generateNextId("orders","id_order");
         $id_menu = $_POST['id_menu'];
         $amount = $_POST['amount'];
         $getPriceQry = mysqli_query($conn, "SELECT price FROM menu WHERE id_menu = '$id_menu'");

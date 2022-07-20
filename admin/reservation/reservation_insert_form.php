@@ -11,10 +11,6 @@
     <form action="reservation.php" id="form" method="POST">
         <table>
             <tr>
-                <td><label for="">Id Reservation</label></td>
-                <td><input type="text" id="" name="id_reservation"></td>
-            </tr>
-            <tr>
                 <td><label for="">date</label></td>
                 <td><input type="date" id="" name="date"></td>
             </tr>

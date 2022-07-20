@@ -19,10 +19,6 @@
     <form action="orders.php" id="form" method="POST">
         <table>
             <tr>
-                <td><label for="">Id Order</label></td>
-                <td><input type="text" id="" name="id_order"></td>
-            </tr>
-            <tr>
                 <td><label for="">Id Menu</label></td>
                 <td>
                     <select name="id_menu" id="menu">
