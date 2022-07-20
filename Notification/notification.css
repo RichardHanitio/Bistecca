@@ -21,6 +21,10 @@ body {
     font-size : var(--heading-font-4);
 }
 
+.notif-back {
+    margin-bottom : 50px;
+}
+
 .pdf-container {
     width : 70vw;
     height : 120vh;

@@ -29,7 +29,13 @@
             if($newIdNum<10) $newId = $lastIdPrefix."00".$newIdNum;
             else if($newIdNum<100) $newId = $lastIdPrefix."0".$newIdNum;
             else $newId = $lastIdPrefix.$newIdNum;
-        }
+        } 
+        // else {
+        //     $firstIdPrefix = substr($table, 0, 1);
+        //     $firstIdNum = "001";
+        //     $firstId =  $firstIdPrefix.$firstIdNum;
+        //     return $firstId;
+        // }
 
         return $newId;
     }

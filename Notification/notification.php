@@ -34,7 +34,7 @@
             else if($_GET["notif"]=="signout") {
                 echo "<h1 class='title notif-title'>You have logged out</h1>";
             }
-            echo "<p class='desc notif-desc '>Click <a href='../index.php' class='link'>here</a> to go to homepage</p>";
+            echo "<p class='desc notif-desc notif-back'>Click <a href='../index.php' class='link'>here</a> to go to homepage</p>";
 
         ?>
     </body>  

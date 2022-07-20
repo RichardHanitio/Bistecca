@@ -48,9 +48,9 @@
                             ?>
                             <div class="cart-container inside-cart-container" >
                                 <div class="quantity">
-                                    <button class="btn-quantity btn-quantity-minus" onclick="handleMinusQuantity(this)">-</button>
+                                    <button type="button" class="btn-quantity btn-quantity-minus" onclick="handleMinusQuantity(this)">-</button>
                                     <span>1</span>
-                                    <button class="btn-quantity btn-quantity-plus" onclick="handlePlusQuantity(this)">+</button>
+                                    <button type="button" class="btn-quantity btn-quantity-plus" onclick="handlePlusQuantity(this)">+</button>
                                 </div>
                                 <div class="image-container">
                                     <img src="../menuImage/<?= $menu["image"] ?>">
