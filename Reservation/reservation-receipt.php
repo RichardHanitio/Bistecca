@@ -44,17 +44,17 @@
         $output='';
         $total = 0;
         while($row = mysqli_fetch_assoc($query)) {
-            $query2 = mysqli_query($conn, "SELECT menu.name, menu.price FROM orders JOIN menu ON orders.id_menu = menu.id_menu WHERE id_order='".$row["id_order"]."'");
+            $query2 = mysqli_query($conn, "SELECT menu.name, menu.price, orders.amount FROM orders JOIN menu ON orders.id_menu = menu.id_menu WHERE id_order='".$row["id_order"]."'");
             $row2 = mysqli_fetch_assoc($query2);
             $output .= '
-                <tr><td>'.$row2["name"].'</td><td>Rp'.$row2["price"].'</td></tr>
+                <tr><td>'.$row2["name"].'</td><td>'.$row2["amount"].'</td><td>Rp'.$row2["price"] * $row2["amount"].'</td></tr>
             ';
-            $total+=(int)$row2["price"];
+            $total+=(int)$row2["price"] * (int)$row2["amount"];
         }
 
         $output .= '
             <br>
-            <tr><td><strong><h3>Total</h3></strong></td><td><strong><h3>Rp'.$total.'</h3></strong></td></tr>
+            <tr><td><strong><h3>Total</h3></strong></td><td></td><td><strong><h3>Rp'.$total.'</h3></strong></td></tr>
         ';
 
         return $output;
@@ -97,6 +97,8 @@
     
     $html .= "<h2>------------------------------------ Menu Ordered ------------------------------------</h2>";
     $html .= '<table>';
+    $html .= "<tr height=\"10\"><th><strong>Name</strong></th><th><strong>Qty</strong></th><th><strong>Price</strong></th></tr>";
+    $html .= "<br>";
     $html .= fetchOrdersByReservation();
     $html .= "</table>";
     $html .= "<h2>------------------------------------ Check Closed ------------------------------------</h2>";

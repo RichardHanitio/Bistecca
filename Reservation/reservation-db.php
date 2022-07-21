@@ -15,8 +15,6 @@
         $stmt->bind_param("ssssi",$id, $date, $time, $location, $guest);
         $stmt->execute();
 
-        print_r($_SESSION["orders"]);
-
         $orderids = $_SESSION["orders"];
         foreach($orderids as $orderid){
             $newMainId = generateNextMainId();
@@ -24,6 +22,15 @@
             $stmt2 = $conn->prepare($q);
             $stmt2->bind_param("isss",$newMainId,$email,$id,$orderid);
             $stmt2->execute();
+        }
+
+        // echo $_POST["amount"]["O001"];
+        // print_r($_POST["amount"]);
+        // update table order ke amount yang benar
+        $amounts = $_POST["amount"];
+        foreach($amounts as $key => $amount) {
+            $intamount = (int)$amount;
+            $changeAmount = mysqli_query($conn, "UPDATE orders SET amount=$intamount WHERE id_order='$key'");
         }
         
         header("Location: ../Notification/notification.php?notif=checkout&reservationid=$id");

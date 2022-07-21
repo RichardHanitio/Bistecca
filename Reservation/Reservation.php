@@ -36,8 +36,6 @@
                     $pricerow = mysqli_fetch_assoc($getprice);
                     $price = (int)$pricerow["price"];
                     $amount = 1;
-
-                    echo $id_order;
                     
                     $stmt = $conn->prepare("INSERT INTO orders VALUES(?,?,?,?)");
                     $stmt->bind_param("ssii", $id_order, $id, $amount, $price);
@@ -48,18 +46,23 @@
                     while($menu = mysqli_fetch_assoc($getmenu)) { 
                             $total+=(int)$menu["price"];
                         ?>
-                        <div class="cart-container inside-cart-container" >
+                        <div class="cart-container inside-cart-container" id="<?php echo $id ?>" >
                             <div class="quantity">
-                                <button type="button" class="btn-quantity btn-quantity-minus" onclick="handleMinusQuantity(this)">-</button>
-                                <span>1</span>
-                                <button type="button" class="btn-quantity btn-quantity-plus" onclick="handlePlusQuantity(this)">+</button>
+                                <button type="button" class="btn-quantity btn-quantity-minus" onclick="
+                                    handleAmount('-',this.parentNode.parentNode);
+                                    ">-</button>
+                                <span class="amount">1</span>
+                                <input type="hidden" name="amount[<?=$id_order?>]" class="hidden-amount" value="1">
+                                <button type="button" class="btn-quantity btn-quantity-plus" onclick="
+                                    handleAmount('+',this.parentNode.parentNode);
+                                ">+</button>
                             </div>
                             <div class="image-container">
                                 <img src="../menuImage/<?= $menu["image"] ?>">
                                 <p class="menu-name"><?= $menu["name"] ?></p>
                             </div>
                             <div class="amount">
-                                <p class="amount-nominal">Rp<?= $menu["price"]?></p>
+                                <p class="amount-nominal">Rp<span class="nominal"><?= $menu["price"] ?></span></p>
                             </div>
                         </div>
                         
@@ -70,7 +73,7 @@
                         <hr/>
                         <div class="container-subtotal" >
                             <p class="total">Total</p>
-                            <div class="subtotal">Rp'.$total.'</div>
+                            <div class="subtotal">Rp<span class="total-nominal">'.$total.'</span></div>
                         </div>
                     ';
                 $_SESSION["orders"] = $arr_orders;
@@ -84,12 +87,12 @@
             <div class="reservation-container">
                 <div class="reservation-info">
                     <div class="card a">
-                        <img src="Calendar.png" alt="">
+                        <img src="../images/Calendar.png" alt="">
                         <div class="icon-info">Reservation Date</div>
                         <input type="date" name="reservation_date" id="" required>
                     </div>
                     <div class="card b">
-                        <img src="Clock.png" alt="">
+                        <img src="../images/Clock.png" alt="">
                         <div class="icon-info">Time</div>
                         <select name="reservation_time" id="" required>
                             <option value="07:00">07:00</option>
@@ -100,12 +103,12 @@
 
                     </div>
                     <div class="card c">
-                        <img src="Guest.png" alt="">
+                        <img src="../images/Guest.png" alt="">
                         <div class="icon-info">Num of Guest</div>
                         <input type="number" name="reservation_guest" id="" min="1" required>
                     </div>
                     <div class="card d">
-                        <img src="Location.png" alt="">
+                        <img src="../images/Location-logo.png" alt="">
                         <div class="icon-info">Location</div>
                         <select name="reservation_location" id="" required>
                             <option value="Italian Greenville">Italian Greenville</option>
