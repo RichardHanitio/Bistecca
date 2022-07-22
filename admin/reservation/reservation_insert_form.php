@@ -1,3 +1,8 @@
+<?php 
+    require_once "../../lib.php";
+    require_once "../../db.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,18 +25,13 @@
             </tr>
             <tr>
                 <td><label for="">Location</label></td>
-                <td><select name="location" id="">
-                    <option value="Italian Greenville">Italian Greenville</option>
-                    <option value="Carrolwood">Carrolwood</option>
-                    <option value="Coral Springs">Coral Springs</option>
-                    <option value="Daytona">Daytona</option>
-                    <option value="Gainsville">Gainsville</option>
-                    <option value="Jacksonville">Jacksonville</option>
-                    <option value="Kissimmee">Kissimmee</option>
-                    <option value="Longwood">Longwood</option>
-                    <option value="Orange Park">Orange Park</option>
-                    <option value="South Tampa">South Tampa</option>
-                </select></td>
+                <td>
+                    <select name="location" id="">
+                        <?php $table = selectTableLocation("location", null); while($row = mysqli_fetch_array($table)) { ?>
+                            <option value="<?= $row[0] ?>"> <?= $row[0] ?> </option>
+                        <?php } ?>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td><label for="">Guest</label></td>

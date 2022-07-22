@@ -2,6 +2,60 @@
     require_once "../lib.php";
     require_once "../db.php";
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    $_SESSION['isAdmin'] = true;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     if(!isset($_GET['keyword'])) $_GET['keyword'] = null;
 ?>
 
@@ -29,6 +83,7 @@
                 <a href="adminPanel.php?page=3" class="asi">Reservation</a>
                 <a href="adminPanel.php?page=4" class="asi">Orders</a>
                 <a href="adminPanel.php?page=5" class="asi">Main</a>
+                <a href="adminPanel.php?page=6" class="asi">Location</a>
             </aside>
 
             <div class="container">
@@ -209,6 +264,36 @@
                                 <td>
                                     <a href="main/main.php?id_main=<?= $row[0] ?>">Hapus</a> 
                                     <a href="main/main_change_form.php?id_main=<?= $row[0] ?> &email=<?= $row[1] ?> &id_reservation=<?= $row[2] ?> &id_order=<?= $row[3] ?>">Ubah</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </table>
+
+                <!-- location -->
+                <?php } else if ($_GET['page'] == 6) { ?>
+
+                    <div class="container-side">
+                        <a href="location/location_insert_form.php" class="btn">Tambah Data</a>
+                        <form class="right" action="adminPanel.php" method="GET">
+                            <input type="text" id="search" placeholder='Search Keyword . . .' name='keyword'>
+                            <input type="hidden" name="page" value='6'>
+                            <input type="submit" value="send" class="btn">    
+                        </form>
+                    </div>
+                    <table>
+                        <tr>
+                            <th>location</th>
+                            <th>image</th>
+                            <th>edit</th>
+                        </tr>
+                        
+                        <?php $table = selectTableLocation("location", $_GET['keyword']);  while($row = mysqli_fetch_array($table)) { ?>
+                            <tr>
+                                <td><?= $row[0] ?></td>
+                                <td><?= $row[1] ?></td>
+                                <td>
+                                    <a href="location/location.php?location=<?= $row[0] ?>">Hapus</a> 
+                                    <a href="location/location_change_form.php?location=<?= $row[0] ?>">Ubah</a>
                                 </td>
                             </tr>
                         <?php } ?>

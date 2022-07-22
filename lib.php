@@ -111,6 +111,17 @@
         }
     }
 
+    function selectTableLocation($table, $keyword=null){
+        global $conn;
+        $key = "$keyword" . "%";
+        if($keyword == null){
+            return mysqli_query($conn, "SELECT * FROM $table");
+        }
+        else{
+            return mysqli_query($conn, "SELECT * FROM $table WHERE location LIKE '$key'");
+        }
+    }
+
     function selectCategoryMenu($category){
         global $conn;
         return mysqli_query($conn, "SELECT * FROM menu WHERE category = '$category'");

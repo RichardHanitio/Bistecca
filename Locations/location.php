@@ -1,3 +1,8 @@
+<?php 
+  require_once "../lib.php";
+  require_once "../db.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,60 +26,14 @@
     </div>
 
     <div class="grid-container">
-        <div class="container">
-            <img src="../images/location2.png" alt="Avatar" class="image">
-            <div class="middle">
-              <div class="text">CARROLWOOD</div>
-            </div>
-        </div>
-        <div class="container">
-            <img src="../images/location3.png" alt="Avatar" class="image">
-            <div class="middle">
-              <div class="text">CORAL SPRINGS</div>
-            </div>
-        </div>
-        <div class="container">
-            <img src="../images/location4.png" alt="Avatar" class="image">
-            <div class="middle">
-              <div class="text">DAYTONA</div>
-            </div>
-        </div>
-        <div class="container">
-            <img src="../images/location5.png" alt="Avatar" class="image">
-            <div class="middle">
-              <div class="text">GAINESVILLE</div>
-            </div>
-        </div>
-        <div class="container">
-            <img src="../images/location6.png" alt="Avatar" class="image">
-            <div class="middle">
-              <div class="text">JACKSONVILLE</div>
-            </div>
-        </div>
-        <div class="container">
-            <img src="../images/location7.png" alt="Avatar" class="image">
-            <div class="middle">
-              <div class="text">KISSIMMEE</div>
-            </div>
-        </div>
-        <div class="container">
-            <img src="../images/location8.png" alt="Avatar" class="image">
-            <div class="middle">
-              <div class="text">LONGWOOD</div>
-            </div>
-        </div>
-        <div class="container">
-            <img src="../images/location9.png" alt="Avatar" class="image">
-            <div class="middle">
-              <div class="text">ORANGE PARK</div>
-            </div>
-        </div>
-        <div class="container">
-            <img src="../images/location10.png" alt="Avatar" class="image">
-            <div class="middle">
-              <div class="text">SOUTH TAMPA</div>
-            </div>
-        </div>
+        <?php $table = selectTableLocation("location", null); while($row = mysqli_fetch_array($table)) { ?>
+          <div class="container">
+              <img src="../locationImage/<?= $row[1] ?>" alt="Avatar" class="image">
+              <div class="middle">
+                <div class="text"><?= $row[0] ?></div>
+              </div>
+          </div>
+        <?php } ?>
     </div>
 
     <div class="location">

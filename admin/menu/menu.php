@@ -14,7 +14,14 @@
         $description = $_POST['description'];
         $price = $_POST['price'];
         $image = $imageFile['name'];
-        $discount = $_POST['discount'];
+        $discount;
+        if(isset($_POST['discount'])){
+            $discount = $_POST['discount'];
+        }
+        else{
+            $discount = 0;
+        }
+        
         $qry = mysqli_query($conn, "INSERT INTO menu VALUES ('$id_menu','$category','$name','$description','$price','$image','$discount')");
         header("location: ../adminPanel.php?page=2");
     }
@@ -37,7 +44,13 @@
         $description = $_POST['description'];
         $price = (int)$_POST['price'];
         $image = $_POST['image'];
-        $discount = $_POST['discount'];
+        $discount;
+        if(isset($_POST['discount'])){
+            $discount = $_POST['discount'];
+        }
+        else{
+            $discount = 0;
+        }
         $qry = mysqli_query($conn, "UPDATE menu SET category='$category',name='$name',description='$description',price='$price',image='$image',discount='$discount' WHERE id_menu='$id_menu'");
 
         if($qry){

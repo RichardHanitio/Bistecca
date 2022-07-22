@@ -18,10 +18,10 @@ body{
 
 form{
     min-width: 40vw;
-    min-height: 40vh;
+    height: max-content;
     padding: 20px;
     border: #1b252a solid;
-    background-color: var(--accent-color-2);
+    background-color: var(--accent-color-2); 
 }
 
 textarea {
@@ -47,5 +47,5 @@ table{
 }
 
 tr{
-    margin: 8px 0;
+    margin: 16px 0;
 }

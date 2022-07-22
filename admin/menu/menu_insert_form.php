@@ -13,7 +13,7 @@
             <tr>
                 <td><label for="">Category</label></td>
                 <td>
-                    <select name="category" required>
+                    <select name="category" id="category" required>
                         <option value="Special Offer">Special Offer</option>
                         <option value="Steak">Steak</option>
                         <option value="Spaghetti">Spaghetti</option>
@@ -44,7 +44,7 @@
             </tr>
             <tr>
                 <td><label for="">Discount</label></td>
-                <td><input type="number" id="" name="discount" placeholder="0"></td>
+                <td><input type="number" id="discount" name="discount" placeholder="0"></td>
             </tr>
             
             <tr>
@@ -57,5 +57,24 @@
             </tr>
         </table>
       </form>
+
+      <script>
+        var category = document.getElementById("category");
+        var discount = document.getElementById("discount");
+
+        category.addEventListener("change", () => {
+            var selected = category.options[category.selectedIndex].text;
+            if(selected != "Special Offer"){
+            console.log("yes")
+            discount.disabled = "disabled";
+            }
+            else{
+                console.log("nope")
+                discount.disabled = "";
+            }
+        });
+        
+
+      </script>
 </body>
 </html>

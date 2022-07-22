@@ -1,4 +1,7 @@
 <?php 
+    require_once "../../lib.php";
+    require_once "../../db.php";
+    
     $id_reservation =  $_GET['id_reservation'];
     $date = $_GET['date'];
     $time = $_GET['time'];
@@ -46,18 +49,13 @@
             </tr>
             <tr>
                 <td><label for="">Location</label></td>
-                <td><select name="location" id="" value="<?= $location ?>">
-                    <option value="Italian Greenville">Italian Greenville</option>
-                    <option value="Carrolwood">Carrolwood</option>
-                    <option value="Coral Springs">Coral Springs</option>
-                    <option value="Daytona">Daytona</option>
-                    <option value="Gainsville">Gainsville</option>
-                    <option value="Jacksonville">Jacksonville</option>
-                    <option value="Kissimmee">Kissimmee</option>
-                    <option value="Longwood">Longwood</option>
-                    <option value="Orange Park">Orange Park</option>
-                    <option value="South Tampa">South Tampa</option>
-                </select></td>
+                <td>
+                    <select name="location" id="">
+                        <?php $table = selectTableLocation("location", null); while($row = mysqli_fetch_array($table)) { ?>
+                            <option <?php if($location == $row[0]) echo "selected='selected'" ?> value="<?= $row[0] ?>"><?= $row[0] ?></option>
+                        <?php } ?>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td><label for="">guest</label> </td>

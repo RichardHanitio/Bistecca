@@ -1,6 +1,6 @@
 <?php 
     $id_menu =  $_GET['id_menu'];
-    $category = $_GET['category'];
+    $category = trim($_GET['category']);
     $name = $_GET['name'];
     $description = $_GET['description'];
     $price = $_GET['price'];
@@ -32,12 +32,12 @@
             <tr>
                 <td><label for="">Category</label></td>
                 <td>
-                    <select name="category" required>
-                        <option value="Special Offer">Special Offer</option>
-                        <option value="Steak">Steak</option>
-                        <option value="Spaghetti">Spaghetti</option>
-                        <option value="Snack">Snack</option>
-                        <option value="Drinks">Drinks</option>
+                    <select name="category" id="category" required>
+                        <option <?php if($category=="Special Offer") echo "selected='selected'" ?> value="Special Offer">Special Offer</option>
+                        <option <?php if($category=="Steak") echo "selected='selected'" ?> value="Steak">Steak</option>
+                        <option <?php if($category=="Spaghetti") echo "selected='selected'" ?> value="Spaghetti">Spaghetti</option>
+                        <option <?php if($category=="Snack") echo "selected='selected'" ?> value="Snack">Snack</option>
+                        <option <?php if($category=="Drinks") echo "selected='selected'" ?> value="Drinks">Drinks</option>
                     </select>
                 </td>
             </tr>
@@ -64,7 +64,7 @@
             </tr>
             <tr>
                 <td><label for="">Discount</label></td>
-                <td><input type="text" id="" name="discount" value="<?= $discount ?>"></td>
+                <td><input type="text" id="discount" name="discount" value="<?= $discount ?>"></td>
             </tr>
             <tr>
                 <td></td>
@@ -76,5 +76,34 @@
             </tr>
         </table>
       </form>
+
+      <script>
+        var category = document.getElementById("category");
+        var discount = document.getElementById("discount");
+
+        var selected = category.options[category.selectedIndex].text;
+        if(selected != "Special Offer"){
+            console.log("yes")
+            discount.disabled = "disabled";
+        }
+        else{
+            console.log("nope")
+            discount.disabled = "";
+        }
+
+        category.addEventListener("change", () => {
+            var selected = category.options[category.selectedIndex].text;
+            if(selected != "Special Offer"){
+            console.log("yes")
+            discount.disabled = "disabled";
+            }
+            else{
+                console.log("nope")
+                discount.disabled = "";
+            }
+        });
+        
+
+      </script>
 </body>
 </html>
