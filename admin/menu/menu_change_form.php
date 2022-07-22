@@ -31,7 +31,15 @@
             </tr>
             <tr>
                 <td><label for="">Category</label></td>
-                <td><input type="text" id="" name="category" value="<?= $category ?>"></td>
+                <td>
+                    <select name="category" required>
+                        <option value="Special Offer">Special Offer</option>
+                        <option value="Steak">Steak</option>
+                        <option value="Spaghetti">Spaghetti</option>
+                        <option value="Snack">Snack</option>
+                        <option value="Drinks">Drinks</option>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td><label for="">Name</label></td>
@@ -40,7 +48,7 @@
             </tr>
             <tr>
                 <td><label for="">Description</label></td>
-                <td><input type="text" id="" name="description" value="<?= $description ?>"></td>
+                <td><textarea name="description"><?= $description ?></textarea></td>
             </tr>
             <tr>
                 <td><label for="">Price</label></td>

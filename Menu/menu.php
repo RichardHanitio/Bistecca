@@ -23,6 +23,39 @@
                 <section>
                     <div class="container menu-container">
                         <div class="title menu-main-title">
+                            <label>Special Offer For Today</label>
+                        </div>
+
+                        <div class="background-container">
+                            <?php 
+                                $table = selectCategoryMenu("SPECIAL OFFER"); 
+                                while( $row = mysqli_fetch_array($table)) {?>
+                                <div class="card-container">
+                                    <div class="card-inner-container">
+                                        <div class="picture">
+                                            <img src="../menuImage/<?= $row[5] ?>"/>
+                                        </div>
+                                        <div class="card-container-info">
+                                            <p class="menu-title"><?= $row[2] ?></p>
+                                            <p class="menu-info desc" ><?= chop_string($row[3]) ?></p>
+                                            <div class="card-container-amount">
+                                                <p class="menu-price">Rp<?= discountPrice($row[4], $row[6]) ?></p>
+                                                <?php if(is_logged_in()) { ?>
+                                                    <label class="icon" for="<?= $row[0] ?>">+</label>
+                                                    <input type="checkbox" name="id_menu[]" id="<?= $row[0] ?>" value="<?= $row[0] ?>" onchange="updateCount(this)">
+                                                <?php }?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>     
+                            <?php } ?>
+                        </div>
+                        
+                    </div>
+                </section>
+                <section>
+                    <div class="container menu-container">
+                        <div class="title menu-main-title">
                             <label>Steak</label>
                         </div>
 

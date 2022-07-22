@@ -3,7 +3,6 @@
     require_once("../db.php");
     require_once("../public/TCPDF-main/tcpdf.php");
     
-    
     $id = $_GET["reservationid"];
     $email = $_SESSION["email"];
 
@@ -44,12 +43,12 @@
         $output='';
         $total = 0;
         while($row = mysqli_fetch_assoc($query)) {
-            $query2 = mysqli_query($conn, "SELECT menu.name, menu.price, orders.amount FROM orders JOIN menu ON orders.id_menu = menu.id_menu WHERE id_order='".$row["id_order"]."'");
+            $query2 = mysqli_query($conn, "SELECT menu.name, menu.price, orders.amount, menu.discount FROM orders JOIN menu ON orders.id_menu = menu.id_menu WHERE id_order='".$row["id_order"]."'");
             $row2 = mysqli_fetch_assoc($query2);
             $output .= '
-                <tr><td>'.$row2["name"].'</td><td>'.$row2["amount"].'</td><td>Rp'.$row2["price"] * $row2["amount"].'</td></tr>
+                <tr><td>'.$row2["name"].'</td><td>'.$row2["amount"].'</td><td>Rp'.discountPrice($row2["price"], $row2["discount"]) * $row2["amount"].'</td></tr>
             ';
-            $total+=(int)$row2["price"] * (int)$row2["amount"];
+            $total+=discountPrice($row2["price"], $row2["discount"]) * (int)$row2["amount"];
         }
 
         $output .= '

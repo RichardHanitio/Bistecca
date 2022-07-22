@@ -54,83 +54,29 @@ require_once("./lib.php");
                     Special Offer Just for Today
                 </div>
                 <div class="special-menus">
-                    <div class="special-menu">
-                        <div class="container special-menu-container">
-                            <div class="special-menu-image">
-                                <img src="/images/beef-rib-eye.png" />
-                            </div>
-                            <div class="desc special-menu-caption">
-                                <div class="special-menu-title">
-                                    Beef Rib Eye With Normal Seasoning
-                                </div>
-                                <div class="special-menu-desc">
-                                    Rib-eye steaks, one of the most common
-                                    and best types of steak, come from the
-                                    beef rib primal cut; the corresponding
-                                    roast is the prime rib. Rib-eye steaks,
-                                    sometimes called beauty steaks, are
-                                    tender, juicy and very flavorful, with
-                                    just the right amount of fat...
-                                </div>
-                                <div class="special-menu-price">
-                                    <div>Rp712.500,00</div>
-                                    <div>Rp950.000,00</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="special-menu">
-                        <div class="container special-menu-container">
-                            <div class="special-menu-image">
-                                <img src="/images/beef-rib-eye.png" />
-                            </div>
-                            <div class="desc special-menu-caption">
-                                <div class="special-menu-title">
-                                    Beef Rib Eye With Normal Seasoning
-                                </div>
-                                <div class="special-menu-desc">
-                                    Rib-eye steaks, one of the most common
-                                    and best types of steak, come from the
-                                    beef rib primal cut; the corresponding
-                                    roast is the prime rib. Rib-eye steaks,
-                                    sometimes called beauty steaks, are
-                                    tender, juicy and very flavorful, with
-                                    just the right amount of fat...
-                                </div>
-                                <div class="special-menu-price">
-                                    <div>Rp712.500,00</div>
-                                    <div>Rp950.000,00</div>
+                    <?php
+                        $table = selectCategoryMenu("SPECIAL OFFER"); 
+                        while( $row = mysqli_fetch_assoc($table)) {?>
+                            <div class="special-menu">
+                                <div class="container special-menu-container">
+                                    <div class="special-menu-image">
+                                        <img src="./menuImage/<?= $row["image"]?>"/>
+                                    </div>
+                                    <div class="desc special-menu-caption">
+                                        <div class="special-menu-title">
+                                            <?= $row["name"] ?>
+                                        </div>
+                                        <div class="special-menu-desc">
+                                            <?= $row["description"] ?>
+                                        </div>
+                                        <div class="special-menu-price">
+                                            <div>Rp<?=discountPrice($row["price"], $row["discount"])?></div>
+                                            <div>Rp<?= $row["price"]?></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="special-menu">
-                        <div class="container special-menu-container">
-                            <div class="special-menu-image">
-                                <img src="/images/beef-rib-eye.png" />
-                            </div>
-                            <div class="desc special-menu-caption">
-                                <div class="special-menu-title">
-                                    Beef Rib Eye With Normal Seasoning
-                                </div>
-                                <div class="special-menu-desc">
-                                    Rib-eye steaks, one of the most common
-                                    and best types of steak, come from the
-                                    beef rib primal cut; the corresponding
-                                    roast is the prime rib. Rib-eye steaks,
-                                    sometimes called beauty steaks, are
-                                    tender, juicy and very flavorful, with
-                                    just the right amount of fat...
-                                </div>
-                                <div class="special-menu-price">
-                                    <div>Rp712.500,00</div>
-                                    <div>Rp950.000,00</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
                 <div class="special-order">
                     <input type="button" value="Order Now" class="btn special-order-btn" onclick="window.location.href='./Menu/menu.php'"/>

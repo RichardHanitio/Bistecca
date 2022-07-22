@@ -20,7 +20,7 @@
         $qry = mysqli_query($conn, "SELECT * FROM $table ORDER BY $column DESC LIMIT 1");
         $res = mysqli_fetch_assoc($qry);
         
-        if(!empty($res)) {
+        if(mysqli_num_rows($qry) > 0) {
             $lastId = $res[$column];
             $lastIdNum = (int)substr($lastId, 2, strlen($lastId)-1);
             $lastIdPrefix = substr($lastId, 0, 1);
@@ -29,13 +29,12 @@
             if($newIdNum<10) $newId = $lastIdPrefix."00".$newIdNum;
             else if($newIdNum<100) $newId = $lastIdPrefix."0".$newIdNum;
             else $newId = $lastIdPrefix.$newIdNum;
-        } 
-        // else {
-        //     $firstIdPrefix = substr($table, 0, 1);
-        //     $firstIdNum = "001";
-        //     $firstId =  $firstIdPrefix.$firstIdNum;
-        //     return $firstId;
-        // }
+        } else {
+            $firstIdPrefix = strtoupper(substr($table, 0, 1));
+            $firstIdNum = "001";
+            $firstId =  $firstIdPrefix.$firstIdNum;
+            return $firstId;
+        }
 
         return $newId;
     }
@@ -44,11 +43,17 @@
         global $conn;
         $qry = mysqli_query($conn, "SELECT * FROM main ORDER BY id_main DESC LIMIT 1");
         $res = mysqli_fetch_assoc($qry);
-        if(!empty($res)) {
+        if(mysqli_num_rows($qry) > 0) {
             $lastId = (int)$res["id_main"];
             $newId = $lastId + 1;
+        } else {
+            return 1;
         }
         return $newId;
+    }
+
+    function discountPrice($price, $discount) {
+        return (100 - (int)$discount) / 100 * (int)$price;
     }
 
     function selectTableUser($table, $keyword=null){
@@ -110,4 +115,6 @@
         global $conn;
         return mysqli_query($conn, "SELECT * FROM menu WHERE category = '$category'");
     }
+
+    
 ?>

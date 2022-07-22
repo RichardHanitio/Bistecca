@@ -24,6 +24,8 @@
             $stmt2->execute();
         }
 
+        echo $id;
+
         // echo $_POST["amount"]["O001"];
         // print_r($_POST["amount"]);
         // update table order ke amount yang benar
@@ -33,7 +35,7 @@
             $changeAmount = mysqli_query($conn, "UPDATE orders SET amount=$intamount WHERE id_order='$key'");
         }
         
-        header("Location: ../Notification/notification.php?notif=checkout&reservationid=$id");
+        // header("Location: ../Notification/notification.php?notif=checkout&reservationid=$id");
 
     } else {
         header("Location: reservation.php");

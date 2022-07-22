@@ -44,7 +44,7 @@
                     // tampilkan menu ke layar & hitung total
                     $getmenu = mysqli_query($conn, "SELECT * FROM menu WHERE id_menu = '$id'");
                     while($menu = mysqli_fetch_assoc($getmenu)) { 
-                            $total+=(int)$menu["price"];
+                            $total+=discountPrice($menu["price"], $menu["discount"]);
                         ?>
                         <div class="cart-container inside-cart-container" id="<?php echo $id ?>" >
                             <div class="quantity">
@@ -62,7 +62,7 @@
                                 <p class="menu-name"><?= $menu["name"] ?></p>
                             </div>
                             <div class="amount">
-                                <p class="amount-nominal">Rp<span class="nominal"><?= $menu["price"] ?></span></p>
+                                <p class="amount-nominal">Rp<span class="nominal"><?= discountPrice($menu["price"], $menu["discount"]) ?></span></p>
                             </div>
                         </div>
                         
@@ -87,12 +87,12 @@
             <div class="reservation-container">
                 <div class="reservation-info">
                     <div class="card a">
-                        <img src="../images/Calendar.png" alt="">
+                        <img src="../images/Calendar.png" class="icon" alt="">
                         <div class="icon-info">Reservation Date</div>
                         <input type="date" name="reservation_date" id="" required>
                     </div>
                     <div class="card b">
-                        <img src="../images/Clock.png" alt="">
+                        <img src="../images/Clock.png" class="icon" alt="">
                         <div class="icon-info">Time</div>
                         <select name="reservation_time" id="" required>
                             <option value="07:00">07:00</option>
@@ -103,12 +103,12 @@
 
                     </div>
                     <div class="card c">
-                        <img src="../images/Guest.png" alt="">
+                        <img src="../images/Guest.png" class="icon" alt="">
                         <div class="icon-info">Num of Guest</div>
                         <input type="number" name="reservation_guest" id="" min="1" required>
                     </div>
                     <div class="card d">
-                        <img src="../images/Location-logo.png" alt="">
+                        <img src="../images/Location-logo.png" alt="" class="icon">
                         <div class="icon-info">Location</div>
                         <select name="reservation_location" id="" required>
                             <option value="Italian Greenville">Italian Greenville</option>

@@ -12,7 +12,17 @@
         <table>
             <tr>
                 <td><label for="">Category</label></td>
-                <td><input type="text" id="" name="category"></td>
+                <td>
+                    <select name="category" required>
+                        <option value="Special Offer">Special Offer</option>
+                        <option value="Steak">Steak</option>
+                        <option value="Spaghetti">Spaghetti</option>
+                        <option value="Snack">Snack</option>
+                        <option value="Drinks">Drinks</option>
+                    </select>
+
+                </td>
+                <!-- <td><input type="text" id="" name="category"></td> -->
             </tr>
             <tr>
                 <td><label for="">name</label></td>
@@ -21,7 +31,8 @@
             </tr>
             <tr>
                 <td><label for="">Description</label></td>
-                <td><input type="text" id="" name="description"></td>
+                <td><textarea id="" name="description"></textarea></td>
+                <!-- <td><input type="text" id="" name="description"></td> -->
             </tr>
             <tr>
                 <td><label for="">Price</label></td>

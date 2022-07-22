@@ -162,6 +162,10 @@ body {
 
 }
 
+.icon {
+  width : 50px;
+}
+
 .card{
     display: flex;
     flex-direction: column;
